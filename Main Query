@@ -1,0 +1,43 @@
+drop database issacarun;
+create database issacarun;
+USE issacarun;
+CREATE TABLE issacarun2 (
+    id INT auto_increment PRIMARY KEY,
+    name VARCHAR(20),
+    age INT not null ,
+    class VARCHAR(10),
+    gpa DECIMAL(4,2),
+    college VARCHAR(50) 
+);
+
+CREATE TABLE alagu (
+    employee_id INT PRIMARY KEY,
+    gender VARCHAR(6),
+    adhar_no BIGINT,
+    FOREIGN KEY (employee_id) REFERENCES issacarun2(id)
+);
+
+INSERT INTO issacarun2 (name, age, class, gpa, college)
+VALUES ('MARJA', 22, 'BE', 9.8, 'SRM University'),
+('ALAGUVEL', 25, 'BE', 6.7, 'Government College'),('NANDHA', 26, 'BE', 9.9, 'OXFORD AMERICA'),
+('virat', 32, 'cricket', 10, 'ICC'),('SUMMA', 27, 'cricket', 10, 'ICC');
+
+INSERT INTO alagu  (employee_id, gender, adhar_no)
+VALUES(1, "male", 7533333333389),(2, "fimale",54685378985),(3, "male",23542367643737);
+
+SELECT * FROM issacarun2;
+
+select * from alagu;
+
+SELECT 
+    i.id,
+    i.name,
+    i.class,
+    i.gpa,
+    i.college,
+    a.gender,
+    a.adhar_no
+FROM issacarun2 i
+inner JOIN alagu a
+ON i.id = a.employee_id
+order by i.gpa asc;
